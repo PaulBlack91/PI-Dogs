@@ -1,4 +1,3 @@
-const sequelize = require('sequelize');
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
@@ -12,7 +11,8 @@ module.exports = (sequelize) => {
 
     },
         {
-            timestamps: fasle
+            timestamps: false
         }
     )
 }
+
