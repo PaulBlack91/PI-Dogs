@@ -15,13 +15,12 @@ const ApiDb = async () => {
                 height: e.height.metric,
                 weight: e.weight.metric,
                 life_span: e.life_span,
-                breeds: e.breed_group,
-                temperament: e.temperament,                
+                temperament: e.temperament,
                 // image: e.image.url ? e.image.url : "not image Dog" despues en el front
 
             };
         });
-        //console.log(dogList);
+        // console.log(dogList);
         return dogList;
 
 
@@ -44,6 +43,8 @@ const getDogsDb = async () => {
             }]
         });
 
+        console.log(dogsDb, ' soy dogsDB lauta te amo');
+
         const newDb = dogsDb.map((e) => {
             // mapeo los nuevos datos que me traje de mi db
             return {
@@ -52,7 +53,6 @@ const getDogsDb = async () => {
                 name: e.name,
                 height: e.height,
                 weight: e.weight,
-                breeds: e.breeds,
                 life_span: e.life_span,
                 temperament: e.temperaments.map((e) => e.name), // este cuando haga el temperamen me va hacer falta  para   el get de temperamentos
             }
@@ -79,30 +79,61 @@ const getAll = async () => {
 // Asi esta en el obj temperamente "temperament": "Stubborn, Curious, Playful, Adventurous, Active, Fun-loving" un solo string tengo que separalos en strings individuales 
 
 
-const tempApi = async () => {
-    try {
-        await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`);
+const getApiTemperaments = async () => {
 
-        let tempMap = tempApi.data.map((e) => e.temperament).toString().split(', ').trim()
+    // el  '?' es un opcional chaining  me permite encadenar cosas  porque JS se wachiturrea 
+    const apiTemperaments = await ApiDb();
+    const temperamentList = apiTemperaments
+        .map((el) => el.temperament?.split(", "))
+        .flat();
+// quita los 'sub arrays'
+    const temperament = [...new Set(temperamentList)];
+    // el set te devuelve uno solo si es que xisten elementos repetidos
 
-        tempMap.forEach(async (e) => {
-            if (e) {
-                await Temperament.findOrCreate({
-                    where: {
-                        name: e,
-                    }
-                })
-            }
-        })
+    temperament.forEach(async element => {
+        if (element) {
+            Temperament.findOrCreate({
+                where: { name: element }
+            });
+        }
+    });
 
-    } catch (error) {
-        console.log(error)
-    }
+    let allTemp = await Temperament.findAll()
+    return allTemp
 }
 
 
 
+// const tempApi = async () => {
+//     try {
+
+//         let allDataDogs = await ApiDb()        
+
+//         let tempMap = await allDataDogs.map(e => e.temperament.split())
 
 
 
-module.exports = { ApiDb, getDogsDb, getAll, tempApi }
+//         tempMap.forEach(async (e) => {
+//             if (e) {
+//                 await Temperament.findOrCreate({
+//                     where: {
+//                         name: e,
+//                     }
+//                 })
+//             }
+//         })
+
+//         let allTemp = await Temperament.findAll()
+//         return allTemp
+
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
+
+
+
+
+
+
+module.exports = { ApiDb, getDogsDb, getAll, getApiTemperaments }

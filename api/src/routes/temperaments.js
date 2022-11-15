@@ -1,19 +1,18 @@
 const { Router } = require("express");
 const router = Router()
-const {tempApi} = require ('./controllers')
+const {getApiTemperaments} = require ('./controllers')
 
 
-router.get("/temperaments", async (req, res) => {  
-      
-      try {
-          res.status(200).send(tempApi);
+router.get("/", async (req, res) => {  
+  
+  try {
+        const temp = await getApiTemperaments()
+          res.status(200).send(temp);
        
       } catch (error) {
         console.log(error)
       }
     });
-
-
 
 
 
