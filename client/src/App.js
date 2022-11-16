@@ -1,10 +1,10 @@
 import React from 'react';
 import { Route } from 'react-router-dom'
 import './App.css';
-import LandingPage from './components/LandingPage.jsx';
-import Home from './components/Home';
-import Details from './components/Details';
-import Create from './components/Create';
+import LandingPage from './components/LandingPage/LandingPage';
+import Home from './components/Home/Home';
+import Details from './components/Details/Details';
+import Create from './components/Create/Create';
 
 function App() {
   return (
