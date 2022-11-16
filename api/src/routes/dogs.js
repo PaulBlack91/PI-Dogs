@@ -3,6 +3,7 @@ const router = Router()
 const { ApiDb, getAll } = require('./controllers.js')
 const { Temperament, Dog } = require('../db')
 
+
 router.get("/", async (req, res) => {
 
   try {
@@ -78,9 +79,6 @@ router.post("/", async (req, res) => {
         }
 
       })
-
-
-
 
       return res.status(200).send("Dog Created");
     } else {

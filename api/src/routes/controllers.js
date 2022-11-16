@@ -83,9 +83,7 @@ const getApiTemperaments = async () => {
 
     // el  '?' es un opcional chaining  me permite encadenar cosas  porque JS se wachiturrea 
     const apiTemperaments = await ApiDb();
-    const temperamentList = apiTemperaments
-        .map((el) => el.temperament?.split(", "))
-        .flat();
+    const temperamentList = apiTemperaments.map((el) => el.temperament?.split(", ")).flat();
 // quita los 'sub arrays'
     const temperament = [...new Set(temperamentList)];
     // el set te devuelve uno solo si es que xisten elementos repetidos
@@ -130,10 +128,6 @@ const getApiTemperaments = async () => {
 //         console.log(error)
 //     }
 // }
-
-
-
-
 
 
 module.exports = { ApiDb, getDogsDb, getAll, getApiTemperaments }
