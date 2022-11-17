@@ -16,7 +16,7 @@ const ApiDb = async () => {
                 weight: e.weight.metric,
                 life_span: e.life_span,
                 temperament: e.temperament,
-                // image: e.image.url ? e.image.url : "not image Dog" despues en el front
+                image: e.image.url ? e.image.url : "not image Dog" 
 
             };
         });
@@ -42,8 +42,7 @@ const getDogsDb = async () => {
                 }
             }]
         });
-
-        console.log(dogsDb, ' soy dogsDB lauta te amo');
+        
 
         const newDb = dogsDb.map((e) => {
             // mapeo los nuevos datos que me traje de mi db
@@ -102,32 +101,6 @@ const getApiTemperaments = async () => {
 
 
 
-// const tempApi = async () => {
-//     try {
-
-//         let allDataDogs = await ApiDb()        
-
-//         let tempMap = await allDataDogs.map(e => e.temperament.split())
-
-
-
-//         tempMap.forEach(async (e) => {
-//             if (e) {
-//                 await Temperament.findOrCreate({
-//                     where: {
-//                         name: e,
-//                     }
-//                 })
-//             }
-//         })
-
-//         let allTemp = await Temperament.findAll()
-//         return allTemp
-
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
 
 
 module.exports = { ApiDb, getDogsDb, getAll, getApiTemperaments }

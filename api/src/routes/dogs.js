@@ -17,6 +17,7 @@ router.get("/", async (req, res) => {
     }
 
   } catch (error) {
+    res.status(400).send('no existe el perro')
     console.log(error);
   }
 });
