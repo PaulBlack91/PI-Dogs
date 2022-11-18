@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Card = ({ id, name, temperament, wheight, image }) => {
   return (
     <Link to={`/Details/${id}`}>
-      <div className="cardContein">
+      <div className="card-conteiner">
         <img src={image} alt="img not found" />
         <p> {name} </p>
         <p>{temperament}</p>
