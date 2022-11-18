@@ -10,10 +10,18 @@ router.get("/", async (req, res) => {
     const { name } = req.query
     const allDog = await getAll();
 
-    if (!name) return res.send(allDog)
-    else {
+    // if (name) return res.status(400).send('raza inexistente')
+    // else {
+    //   let dogName = await allDog.filter((e) => e.name.toLowerCase().includes(name.toLowerCase()))
+    //   dogName.length > 0 ? res.status(200).send(dogName) : res.status(400).send('raza inexistente')
+      
+    // }
+    if (name){    
       let dogName = await allDog.filter((e) => e.name.toLowerCase().includes(name.toLowerCase()))
-      res.status(200).send(dogName)
+      dogName.length > 0 ? res.status(200).json(dogName) : res.status(404).send('raza inexistente')
+      
+    }else{
+      res.status(200).json(allDog())
     }
 
   } catch (error) {
