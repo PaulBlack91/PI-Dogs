@@ -5,7 +5,6 @@ import { getDogsName } from "../../redux/actions";
 
 const SearchBar = () => {
     const dispatch = useDispatch()
-
     const [input, setImput] = useState('')
 
     const handleSubmit = (e)=>{

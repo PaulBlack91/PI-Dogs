@@ -7,25 +7,20 @@ const { Temperament, Dog } = require('../db')
 router.get("/", async (req, res) => {
 
   try {
-    const { name } = req.query
     const allDog = await getAll();
+    const { name } = req.query
 
-    // if (name) return res.status(400).send('raza inexistente')
-    // else {
-    //   let dogName = await allDog.filter((e) => e.name.toLowerCase().includes(name.toLowerCase()))
-    //   dogName.length > 0 ? res.status(200).send(dogName) : res.status(400).send('raza inexistente')
-      
-    // }
-    if (name){    
-      let dogName = await allDog.filter((e) => e.name.toLowerCase().includes(name.toLowerCase()))
-      dogName.length > 0 ? res.status(200).json(dogName) : res.status(404).send('raza inexistente')
-      
-    }else{
-      res.status(200).json(allDog())
+    if (name) {
+      let dogName = await allDog.filter((e) => e.name.toLowerCase().includes(name.toLocaleLowerCase()))
+      dogName ? res.status(200).send(dogName) : res.status(400).send('Name not found')
     }
+    else {
+      res.status(200).send(allDog)
+    }
+  
 
   } catch (error) {
-    res.status(400).send('no existe el perro')
+
     console.log(error);
   }
 });
