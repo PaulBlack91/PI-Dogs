@@ -4,6 +4,11 @@ import axios from 'axios'
 export const GET_DOGS = 'GET_DOGS'
 export const GET_TEMPERAMENTS = 'GET_TEMPERAMENTS'
 export const GET_DOGS_BY_NAME = 'GET_DOGS_BY_NAME'
+export const FILTER_BY_TEMPERAMENTS = 'FILTER_BY_TEMPERAMENTS'
+export const GET_DOG_BY_ID = 'GET_DOG_BY_ID'
+export const FILTER_CREATED = 'FILTER_CREATED'
+export const ORDER_BY_NAME =  'ORDER_BY_NAME'
+export const ORDER_BY_WEIGHT =  'ORDER_BY_WEIGHT'
 // aca tengo que hacer las restantes 
 
 export const allDogs = () =>async dispatch =>{
@@ -22,6 +27,7 @@ export const allDogs = () =>async dispatch =>{
 export const allTemp = () =>async dispatch=>{
     try {
         const localhost = await axios.get('http://localhost:3001/temperaments')
+        //console.log(localhost.data)
          return dispatch({
             type: GET_TEMPERAMENTS,
             payload: localhost.data
@@ -45,3 +51,67 @@ export const getDogsName = (name) =>async dispatch=>{
         console.log(error)
     }
 } 
+
+export const filterByTemperament = (payload) => async dispatch =>{   
+    try {
+        return dispatch ({
+            type: FILTER_BY_TEMPERAMENTS,
+            payload
+        }
+        )
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+
+export const filterById = (id) => async dispatch =>{
+
+    try {
+        const localhost = await axios.get(`http://localhost:3001/dogs/${id}`)
+        return dispatch({
+            type: GET_DOG_BY_ID,
+            payload: localhost.data
+
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+export const filterCreated = (payload)=>{
+    try {
+        return({
+            type: FILTER_CREATED,
+            payload
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+export const orderByName = (payload)=>{
+    try {
+        return({
+            type: ORDER_BY_NAME,
+            payload
+        })
+        
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const orderByWeight = (payload)=>{
+    try {
+        return({
+            type: ORDER_BY_WEIGHT,
+            payload
+        })
+        
+    } catch (error) {
+        console.log(error)
+    }
+}

@@ -1,0 +1,14 @@
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content input{    
+
+    width:300px;
+}
+
+.span{
+    padding-right: 5px;
+color: aqua;}

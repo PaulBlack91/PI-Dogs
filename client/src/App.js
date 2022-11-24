@@ -11,10 +11,10 @@ function App() {
     <div className="App">
 {/* se puede hcaer uin searchbar  */}
       <Route exact path='/' component={LandingPage} />
-      <Route path='/home' component={Home}/> 
+      <Route exact path='/home' component={Home}/> 
       {/* navbar dentro de todos menos en landingpage */}
       <Route path='/details/:id' component={Details} />
-      <Route path='/create' component={Create} />
+      <Route  path='/create' component={Create} />
       
 
     </div>

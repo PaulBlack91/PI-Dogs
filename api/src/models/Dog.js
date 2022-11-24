@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
       primaryKey: true,
       allowNull: false
     },
-    // nombnre unico  
+    // nombre unico  
 
 
     name: {
@@ -19,20 +19,42 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
 
-     
-    height:{
+    heightMin: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
 
-    weight:{
+    heightMax: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+    },
+
+    weightMin: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+
+    weightMax: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
 
     life_span:{
       type: DataTypes.STRING
+    },
+
+    image: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+
+    createInDb:{
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
     }
+
+    
+
     
   });
 };

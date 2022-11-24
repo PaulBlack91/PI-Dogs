@@ -23,8 +23,10 @@ const SearchBar = () => {
 
   return (
     <div>
+      <form onSubmit={handleSubmit}>
       <button onClick={handleSubmit}> Buscar </button>
       <input type='search' placeholder="Nombre de Raza" value={input} onChange={handleChange}></input>
+      </form>
     </div>
   );
 };

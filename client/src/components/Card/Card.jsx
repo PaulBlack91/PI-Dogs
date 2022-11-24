@@ -1,17 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import './Card.css'
+import "./Card.css";
 
-const Card = ({ id, name, temperament, wheight, image }) => {
+const Card = ({id, name, temperament, image, weightMin, weightMax, breeds }) => {
   return (
-    <Link to={`/Details/${id}`}>
-      <div className="card">
-        <img className="card-image" src={image} alt="img not found" />
-        <p> {name} </p>
-        <p>{temperament}</p>
-        <p>{wheight}</p>
-      </div>
-    </Link>
+    <div className="card">
+      <Link to={`/Details/${id}`}>
+        <div >
+          <div>
+            <h2> {name} </h2>
+          </div>
+          
+          <div>
+
+          <img className="img" src={image} alt="img not found" />
+          </div>
+          <p> Temperamentos:{temperament}</p>
+          <p>
+            {" "}
+            Peso: {weightMin} - {weightMax} Kg.
+          </p>
+          <p> Raza: {breeds}</p>
+        </div>
+      </Link>
+    </div>
   );
 };
 

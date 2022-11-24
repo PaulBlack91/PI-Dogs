@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
     else {
       res.status(200).send(allDog)
     }
-  
+
 
   } catch (error) {
 
@@ -36,7 +36,7 @@ router.get('/:id', async (req, res) => {
     let dogsId = await allDogs.filter(e => e.id == id)
 
     if (dogsId.length) {
-      res.status(200).send(dogsId)
+      res.status(200).send(dogsId[0])
     }
 
   } catch (error) {
@@ -49,40 +49,36 @@ router.get('/:id', async (req, res) => {
 router.post("/", async (req, res) => {
   const {
     name,
-    height,
-    weight,
-    breeds,
+    heightMin,
+    heightMax,
+    weightMin,
+    weightMax,
     life_span,
     image,
-    createdInDb,
-    temperament,
+    temperament
   } = req.body;
   try {
 
     if (name) {
       const newDog = await Dog.create({  // aca creo el perro con esto
         name,
-        height,
-        weight,
-        breeds,
+        heightMin,
+        heightMax,
+        weightMin,
+        weightMax,
         life_span,
-        image,
-        createdInDb,
+        image,        
       });
 
-      temperament.forEach(async (e) => {
-        if (e) {
+      let createdDb = await Temperament.findAll({
+        where: {
+          name: temperament,
+        },
+      });
 
-          const createdDb = await Temperament.findAll({  // se lo paso aparte porque tengo que hacer la relacion aparte
-            where: { name: e },   // lo tengo que buscar en el modelo que tiene todas los temperamentos
+      await newDog.addTemperament(createdDb);
 
-            // si temperamento no existe crear y asociar, ademas de buscar el nombre, 
-          });
-          newDog.addTemperament(createdDb);
 
-        }
-
-      })
 
       return res.status(200).send("Dog Created");
     } else {

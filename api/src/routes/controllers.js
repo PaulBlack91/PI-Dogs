@@ -9,14 +9,19 @@ const ApiDb = async () => {
         const allDogs = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
 
         const dogList = await allDogs.data.map((e) => {
+            let height = e.height.metric.split("-")
+            let weight = e.weight.metric.split("-")
             return {
                 id: e.id,
                 name: e.name,
-                height: e.height.metric,
-                weight: e.weight.metric,
+                heightMin: parseInt(height[0]),
+                heightMax: parseInt(height[1]),
+                weightMin: parseInt(weight[0]),
+                weightMax: parseInt(weight[1]),
+                breeds: e.breed_group,
                 life_span: e.life_span,
                 temperament: e.temperament,
-                image: e.image.url ? e.image.url : "not image Dog" 
+                image: e.image.url ? e.image.url : "not image Dog"                
 
             };
         });
@@ -42,18 +47,22 @@ const getDogsDb = async () => {
                 }
             }]
         });
-        
+
 
         const newDb = dogsDb.map((e) => {
             // mapeo los nuevos datos que me traje de mi db
             return {
                 id: e.id,
-                //image: e.image, despues para el front ahora pruebo 
+                image: e.image,
                 name: e.name,
-                height: e.height,
-                weight: e.weight,
-                life_span: e.life_span,
+                heightMin: parseInt(e.heightMin),
+                heightMax: parseInt(e.heightMax),          // aca es donde yo puedo cambiarle en el front algun detalle determinado
+                weightMin: parseInt(e.weightMin),
+                weightMax: parseInt(e.weightMax),
+                breeds: e.breeds,
+                life_span: e.life_span + " years",
                 temperament: e.temperaments.map((e) => e.name), // este cuando haga el temperamen me va hacer falta  para   el get de temperamentos
+                createInDb: e.createInDb
             }
         })
         return newDb
@@ -83,7 +92,7 @@ const getApiTemperaments = async () => {
     // el  '?' es un opcional chaining  me permite encadenar cosas  porque JS se wachiturrea 
     const apiTemperaments = await ApiDb();
     const temperamentList = apiTemperaments.map((el) => el.temperament?.split(", ")).flat();
-// quita los 'sub arrays'
+    // quita los 'sub arrays'
     const temperament = [...new Set(temperamentList)];
     // el set te devuelve uno solo si es que xisten elementos repetidos
 
