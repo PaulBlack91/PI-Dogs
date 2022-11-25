@@ -122,7 +122,7 @@ __Ruta principal__: debe contener
 - [✅] Botones/Opciones para ordenar tanto ascendentemente como descendentemente las razas de perro por:
   - Orden alfabético
   - Peso
-- [ ] Paginado para ir buscando y mostrando las siguientes razas, mostrando 8 razas por página.
+- [✅] Paginado para ir buscando y mostrando las siguientes razas, mostrando 8 razas por página.
 
 __IMPORTANTE__: Dentro de la Ruta Principal se deben mostrar tanto las razas de perros traidas desde la API como así también las de la base de datos, pero NO está permitido almacenar en la base de datos las razas de perros de la API sino que solamente se pueden guardar aquellas creadas desde el form.
 
@@ -140,8 +140,8 @@ __Ruta de creación de raza de perro__: debe contener
   - Altura (Diferenciar entre altura mínima y máxima)
   - Peso (Diferenciar entre peso mínimo y máximo)
   - Años de vida
-- [ ] Posibilidad de seleccionar/agregar uno o más temperamentos
-- [ ] Botón/Opción para crear una nueva raza de perro
+- [✅] Posibilidad de seleccionar/agregar uno o más temperamentos
+- [✅] Botón/Opción para crear una nueva raza de perro
 
 > Es requisito que el formulario de creación esté validado con JavaScript y no sólo con validaciones HTML. Pueden agregar las validaciones que consideren. Por ejemplo: Que el nombre de la raza no pueda contener números o símbolos, que el peso/altura mínimo no pueda ser mayor al máximo y viceversa, etc.
 

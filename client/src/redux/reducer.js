@@ -1,4 +1,4 @@
-import { FILTER_BY_TEMPERAMENTS, FILTER_CREATED, GET_DOGS, GET_DOGS_BY_NAME, GET_DOG_BY_ID, GET_TEMPERAMENTS } from "./actions";
+import { CLEAN, FILTER_BY_TEMPERAMENTS, FILTER_CREATED, GET_DOGS, GET_DOGS_BY_NAME, GET_DOG_BY_ID, GET_TEMPERAMENTS } from "./actions";
 
 
 const initialState = {
@@ -38,8 +38,6 @@ const rootReducer = (state = initialState, action) => {
                 dogs: action.payload,
                 filtro1: action.payload,
                 filtro2: action.payload
-
-
             }
         case FILTER_BY_TEMPERAMENTS:
             const allDogs = state.filterDogs
@@ -107,6 +105,13 @@ const rootReducer = (state = initialState, action) => {
                 filtro1: sortedWeight,
                 filtro2: sortedWeight
             }
+
+            case 'CLEAN' :
+                return({
+                    ...state,
+                    details: {}
+                })
+                
         default:
             return {
                 ...state

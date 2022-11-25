@@ -1,19 +1,43 @@
-.card {
-
-    margin: 10px;
-    width: 150px;
-    height: 250px;    
-    border-radius: 10px;
-    box-shadow: 10px 3px 7px grey
-    
-
-    
-  }
-
-  .img{
-    width: 120px;
-    border: 1px solid black;
-    border-radius: 15px;
-}
-    
+.card { 
   
+  border-radius: 10px;
+  background-color: #C3FCF2;
+  box-shadow: 10px 3px 7px grey;
+  width: 400px;
+  height: 500px;
+  
+}
+
+.img img{
+  
+  border-radius: 15px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -50px;
+  width: 300px;
+  height: 220px;
+  object-fit: cover; 
+  
+}
+
+
+
+.name {
+  height: 100px;
+  text-align: center;
+}
+
+.texto{
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  
+}
+
+.texto span{
+  position: relative;
+  left: 0px;
+
+}
+

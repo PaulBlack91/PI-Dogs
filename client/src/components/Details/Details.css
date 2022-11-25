@@ -1,4 +1,17 @@
-.details {
+.details {  
+  width: 100%;
   padding-right: 5px;
-  color: brown;
+  color: brown; 
+  align-items: center;
+  display: inline-block;  
+ 
+}
+
+.imagen{  
+  width: 20%;
+  height: 20%;
+  border-radius: 10px;
+  
+  
+  
 }

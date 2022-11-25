@@ -4,11 +4,31 @@
     align-items: center;
 }
 
-.content input{    
-
+.content input{ 
     width:300px;
+    margin: 10px;
+}
+.content button{ 
+    width:100px;
+    margin: 10px;
+}
+.content select{ 
+    width:300px;
+    margin: 10px;
+    padding: 1px 2px;
 }
 
 .span{
     padding-right: 5px;
 color: aqua;}
+
+.bodycreate{
+    background-color: #FFE4C4;
+    height: 100%;
+
+}
+
+.create{
+    margin-top: 50px;
+
+}

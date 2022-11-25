@@ -1,17 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { home } from "./Home.css";
+import { home, home1 } from "./Home.css";
 import Card from "../Card/Card.jsx";
 import NavBar from "../Navbar/Navbar.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import {
   allDogs,
-  allTemp,
-  filterByTemperament,
-  filterCreated,
-  orderByName,
-  orderByWeight,
+  allTemp, 
 } from "../../redux/actions.js";
 import Paginado from "../Paginado/Paginado.jsx";
 
@@ -44,7 +39,7 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div className="home1">
       <NavBar />
 
       <Paginado

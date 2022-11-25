@@ -1,8 +1,21 @@
-.home {
+html,body{
+  height: 100%;
+  background-color: #FFE4C4;
+
+}
+
+.home {  
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
+  flex-direction: row;
+  width: 90%;
+  gap: 80px;
   justify-content: center;
-  width: 100%;
-  background-color: bisque;
+  margin: auto;
+
+  
+}
+
+.home1{
+  background-color: #FFE4C4;
 }

@@ -7,54 +7,55 @@ export const GET_DOGS_BY_NAME = 'GET_DOGS_BY_NAME'
 export const FILTER_BY_TEMPERAMENTS = 'FILTER_BY_TEMPERAMENTS'
 export const GET_DOG_BY_ID = 'GET_DOG_BY_ID'
 export const FILTER_CREATED = 'FILTER_CREATED'
-export const ORDER_BY_NAME =  'ORDER_BY_NAME'
-export const ORDER_BY_WEIGHT =  'ORDER_BY_WEIGHT'
+export const ORDER_BY_NAME = 'ORDER_BY_NAME'
+export const ORDER_BY_WEIGHT = 'ORDER_BY_WEIGHT'
+export const CLEAN = 'CLEAN'
 // aca tengo que hacer las restantes 
 
-export const allDogs = () =>async dispatch =>{
+export const allDogs = () => async dispatch => {
     try {
-         const localhost = await axios.get('http://localhost:3001/dogs')
-         return dispatch({
+        const localhost = await axios.get('http://localhost:3001/dogs')
+        return dispatch({
             type: GET_DOGS,
             payload: localhost.data
-         })
-    } catch (error) {        
+        })
+    } catch (error) {
         console.log(error)
     }
 }
 
 
-export const allTemp = () =>async dispatch=>{
+export const allTemp = () => async dispatch => {
     try {
         const localhost = await axios.get('http://localhost:3001/temperaments')
         //console.log(localhost.data)
-         return dispatch({
+        return dispatch({
             type: GET_TEMPERAMENTS,
             payload: localhost.data
-         })
-        
+        })
+
     } catch (error) {
         console.log(error)
     }
 }
 
 
-export const getDogsName = (name) =>async dispatch=>{
+export const getDogsName = (name) => async dispatch => {
     try {
         const localhost = await axios.get(`http://localhost:3001/dogs?name=${name}`)
-         return dispatch({
+        return dispatch({
             type: GET_DOGS_BY_NAME,
             payload: localhost.data
-         })
-        
+        })
+
     } catch (error) {
         console.log(error)
     }
-} 
+}
 
-export const filterByTemperament = (payload) => async dispatch =>{   
+export const filterByTemperament = (payload) => async dispatch => {
     try {
-        return dispatch ({
+        return dispatch({
             type: FILTER_BY_TEMPERAMENTS,
             payload
         }
@@ -65,7 +66,7 @@ export const filterByTemperament = (payload) => async dispatch =>{
 
 }
 
-export const filterById = (id) => async dispatch =>{
+export const filterById = (id) => async dispatch => {
 
     try {
         const localhost = await axios.get(`http://localhost:3001/dogs/${id}`)
@@ -80,9 +81,9 @@ export const filterById = (id) => async dispatch =>{
 }
 
 
-export const filterCreated = (payload)=>{
+export const filterCreated = (payload) => {
     try {
-        return({
+        return ({
             type: FILTER_CREATED,
             payload
         })
@@ -92,26 +93,32 @@ export const filterCreated = (payload)=>{
 }
 
 
-export const orderByName = (payload)=>{
+export const orderByName = (payload) => {
     try {
-        return({
+        return ({
             type: ORDER_BY_NAME,
             payload
         })
-        
+
     } catch (error) {
         console.log(error)
     }
 }
 
-export const orderByWeight = (payload)=>{
+export const orderByWeight = (payload) => {
     try {
-        return({
+        return ({
             type: ORDER_BY_WEIGHT,
             payload
         })
-        
+
     } catch (error) {
         console.log(error)
     }
+}
+
+export const clean = () => {
+    return ({
+        type: CLEAN
+    })
 }

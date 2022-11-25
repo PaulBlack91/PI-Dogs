@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { getDogsName } from "../../redux/actions";
 
+
 const SearchBar = () => {
     const dispatch = useDispatch()
     const [input, setImput] = useState('')
@@ -22,7 +23,7 @@ const SearchBar = () => {
 
 
   return (
-    <div>
+    <div className="searchbar">
       <form onSubmit={handleSubmit}>
       <button onClick={handleSubmit}> Buscar </button>
       <input type='search' placeholder="Nombre de Raza" value={input} onChange={handleChange}></input>

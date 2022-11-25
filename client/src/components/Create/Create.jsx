@@ -26,6 +26,22 @@ const Create = () => {
     image: "",
   });
 
+  const validate = (input) => {
+    let errors = {};
+
+    if (input.name.length < 2) {
+      errors.name = "El nombre debe tener al menos 2 letras";
+    }
+
+    if (input.heightMin > input.heightMax) {
+      errors.height = "La altura mínima no puede ser mayor que la máxima";
+    }
+
+    //lo mismo con el peso
+
+    return errors;
+  };
+
   function handleChange(e) {
     setInput({
       ...input,
@@ -33,8 +49,16 @@ const Create = () => {
     });
   }
 
-  
   function handleSubmit(e) {
+    let resultado = validate(input);
+    let dato = Object.values(resultado);
+
+    //objecto.values guarda en un array solo los valores del objeto
+    if (dato.length) {
+      e.preventDefault();
+      return alert(dato.join("\n"));
+    }
+
     axios.post("http://localhost:3001/dogs", input);
     alert("Dog Created");
   }
@@ -46,43 +70,81 @@ const Create = () => {
     });
   }
 
-  console.log(input.temperament);
+  function handleDelete(event) {
+    event.preventDefault();
+    setInput({
+      ...input,
+      temperament: input.temperament.filter((e) => e !== event.target.value),
+    });
+  }
 
   return (
-    <div>
-      <NavBar />
-      <form className="content" onSubmit={handleSubmit}>
-        <label>Name</label>
-        <input type="text" onChange={handleChange} name="name" />
-        <label>Height Min</label>
-        <input type="text" onChange={handleChange} name="heightMin" />
-        <label>Height Max</label>
-        <input type="text" onChange={handleChange} name="heightMax" />
-        <label>WeightMin</label>
-        <input type="text" onChange={handleChange} name="weightMin" />
-        <label>WeightMax</label>
-        <input type="text" onChange={handleChange} name="weightMax" />
-        <label>Life Span</label>
-        <input type="text" onChange={handleChange} name="life_span" />
-        <label>Imagen</label>
-        <input type="text" onChange={handleChange} name="image" />
-        <label>Temperament</label>
-        <select name="temperament" onChange={handleSelect}>
-          {temperament?.map((e) => {
-            return <option key={e.id}>{e.name}</option>;
-          })}
-        </select>
-        <div>
-          {/* en el map el 'i indica el 'indice simil for */}
-          {input.temperament?.map((e, i) => (
-            <span key={i} value={e} className = {s.span}>
-              {e}
-              <button> X </button>{" "}
-            </span>
-          ))}
+    <div className="bodycreate">
+      <div>
+        <div className="nav">
+          <Link to="/home">
+            <button>Home</button>
+          </Link>
         </div>
-        <button type="submit">CREATE DOG</button>
-      </form>
+      </div>
+<h1>CREA TU PERRO</h1>
+      <div className="create">
+        <form className="content" onSubmit={handleSubmit}>
+          <label>Name</label>
+          <input type="text" onChange={handleChange} name="name" required />
+          <label>Height Min</label>
+          <input
+            type="text"
+            onChange={handleChange}
+            name="heightMin"
+            required
+          />
+          <label>Height Max</label>
+          <input
+            type="text"
+            onChange={handleChange}
+            name="heightMax"
+            required
+          />
+          <label>WeightMin</label>
+          <input
+            type="text"
+            onChange={handleChange}
+            name="weightMin"
+            required
+          />
+          <label>WeightMax</label>
+          <input
+            type="text"
+            onChange={handleChange}
+            name="weightMax"
+            required
+          />
+          <label>Life Span</label>
+          <input type="text" onChange={handleChange} name="life_span" />
+          <label>Imagen</label>
+          <input type="text" onChange={handleChange} name="image" />
+          <label>Temperament</label>
+          <select name="temperament" onChange={handleSelect} required>
+            {temperament?.map((e) => {
+              return <option key={e.id}>{e.name}</option>;
+            })}
+          </select>
+          <div>
+            {/* en el map el 'i indica el 'indice simil for */}
+            {input.temperament?.map((e, i) => (
+              <span key={i} value={e} className={s.span}>
+                {e}
+                <button onClick={handleDelete} value={e}>
+                  {" "}
+                  X{" "}
+                </button>{" "}
+              </span>
+            ))}
+          </div>
+          <button type="submit">CREATE DOG</button>
+        </form>
+      </div>
     </div>
   );
 };
