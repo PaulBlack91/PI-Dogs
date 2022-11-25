@@ -52,6 +52,7 @@ const rootReducer = (state = initialState, action) => {
         case FILTER_CREATED:
                            
             const filtro = state.filterDogs 
+            
             var apiDb
 
             if(action.payload === "created" ){

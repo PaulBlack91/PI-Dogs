@@ -10,7 +10,6 @@ export const FILTER_CREATED = 'FILTER_CREATED'
 export const ORDER_BY_NAME = 'ORDER_BY_NAME'
 export const ORDER_BY_WEIGHT = 'ORDER_BY_WEIGHT'
 export const CLEAN = 'CLEAN'
-// aca tengo que hacer las restantes 
 
 export const allDogs = () => async dispatch => {
     try {
@@ -81,7 +80,7 @@ export const filterById = (id) => async dispatch => {
 }
 
 
-export const filterCreated = (payload)  => async dispatch => {
+export const filterCreated = (payload) => async dispatch => {
     try {
         return dispatch({
             type: FILTER_CREATED,

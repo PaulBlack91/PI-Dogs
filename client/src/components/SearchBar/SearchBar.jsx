@@ -4,12 +4,14 @@ import { useState } from "react";
 import { getDogsName } from "../../redux/actions";
 
 
-const SearchBar = () => {
+
+const SearchBar = ({paginado}) => {
     const dispatch = useDispatch()
     const [input, setImput] = useState('')
 
     const handleSubmit = (e)=>{
         e.preventDefault()
+        paginado(1)
 
         dispatch(
             getDogsName(input)

@@ -9,10 +9,8 @@ import Create from './components/Create/Create';
 function App() {
   return (
     <div className="App">
-{/* se puede hcaer uin searchbar  */}
       <Route exact path='/' component={LandingPage} />
-      <Route exact path='/home' component={Home}/> 
-      {/* navbar dentro de todos menos en landingpage */}
+      <Route exact path='/home' component={Home}/>       
       <Route path='/details/:id' component={Details} />
       <Route  path='/create' component={Create} />
       

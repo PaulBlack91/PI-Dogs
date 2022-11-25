@@ -80,7 +80,7 @@ const Home = () => {
         </Link>
       </div>
 
-      <SearchBar />
+      <SearchBar paginado={paginado}/>
 
       <div className="filtros">
         <select

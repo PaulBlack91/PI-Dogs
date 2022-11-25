@@ -11,10 +11,6 @@ const Create = () => {
   const temperament = useSelector((state) => state.temperament);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(allTemp());
-  }, [dispatch]);
-
   const [input, setInput] = useState({
     name: "",
     heightMin: "",
@@ -32,12 +28,11 @@ const Create = () => {
     if (input.name.length < 2) {
       errors.name = "El nombre debe tener al menos 2 letras";
     }
+    
 
     if (input.heightMin > input.heightMax) {
       errors.height = "La altura mínima no puede ser mayor que la máxima";
     }
-
-    //lo mismo con el peso
 
     return errors;
   };
@@ -53,7 +48,7 @@ const Create = () => {
     let resultado = validate(input);
     let dato = Object.values(resultado);
 
-    //objecto.values guarda en un array solo los valores del objeto
+    //objeto.values guarda en un array solo los valores del objeto
     if (dato.length) {
       e.preventDefault();
       return alert(dato.join("\n"));
@@ -77,6 +72,10 @@ const Create = () => {
       temperament: input.temperament.filter((e) => e !== event.target.value),
     });
   }
+
+  useEffect(() => {
+    dispatch(allTemp());
+  }, [dispatch]);
 
   return (
     <div className="bodycreate">
