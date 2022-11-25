@@ -9,13 +9,57 @@ html,body{
   flex-wrap: wrap;
   flex-direction: row;
   width: 90%;
-  gap: 80px;
+  gap: 25px;
   justify-content: center;
   margin: auto;
+  
 
   
 }
 
 .home1{
   background-color: #FFE4C4;
+}
+
+
+
+.nav {
+  background-color: #007662;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 15vh;
+  justify-content: center;
+}
+
+.nav a {
+  margin: 10px;
+}
+
+.link {
+  margin: 0px 0px 0px 20px;
+}
+
+.searchbar{
+    margin-left: 40px;
+}
+
+.filtros select{
+    margin: 0px 0px 0px 100px  ;
+}
+
+.order{
+    display: flex;
+    align-items: center;
+    margin: 0px 0px 0px 100px  ;
+}
+
+.OrderAndFilter{
+    margin: 0px 0px 0px 100px  ;
+} 
+
+.logo img{
+  width: 100px;
+  height: 100px;
+
 }

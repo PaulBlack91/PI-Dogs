@@ -1,13 +1,11 @@
-import { CLEAN, FILTER_BY_TEMPERAMENTS, FILTER_CREATED, GET_DOGS, GET_DOGS_BY_NAME, GET_DOG_BY_ID, GET_TEMPERAMENTS } from "./actions";
+import { CLEAN, FILTER_BY_TEMPERAMENTS, FILTER_CREATED, GET_DOGS, GET_DOGS_BY_NAME, GET_DOG_BY_ID, GET_TEMPERAMENTS, ORDER_BY_NAME, ORDER_BY_WEIGHT } from "./actions";
 
 
 const initialState = {
     dogs: [],
     temperament: [],
     details: {},
-    filterDogs: [],
-    filtro1: [],
-    filtro2: []
+    filterDogs: [],    
 
 }
 
@@ -19,9 +17,7 @@ const rootReducer = (state = initialState, action) => {
         case GET_DOGS: return {
             ...state,
             dogs: action.payload,
-            filterDogs: action.payload,
-            filtro1: action.payload,
-            filtro2: action.payload
+            filterDogs: action.payload,            
         }
 
         case GET_TEMPERAMENTS: return {
@@ -35,22 +31,17 @@ const rootReducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                dogs: action.payload,
-                filtro1: action.payload,
-                filtro2: action.payload
+                dogs: action.payload,               
+                
             }
         case FILTER_BY_TEMPERAMENTS:
             const allDogs = state.filterDogs
             const filterTempDogs = action.payload === "All"
                 ? allDogs
                 : allDogs.filter((e) => e.temperament?.includes(action.payload))
-
-            // state.filterDogs.filter(e  => {e.temperament?.includes(action.payload)})
-
-
             return {
                 ...state,
-                filtro1: filterTempDogs,
+                dogs: filterTempDogs,
 
             }
         case GET_DOG_BY_ID:
@@ -59,42 +50,59 @@ const rootReducer = (state = initialState, action) => {
                 details: action.payload,
             }
         case FILTER_CREATED:
-            let inDb = state.filtro2.filter(e => e.createInDb === true)
-            let inApi = state.filtro2.filter(e => !e.createInDb)
-            let DBandAPI = [...inApi, ...inDb]                       
-            return {
-                ...state,
-                filtro1: action.payload === "created" ? inDb : action.payload === "Api" ? inApi : DBandAPI,
+                           
+            const filtro = state.filterDogs 
+            var apiDb
 
-
+            if(action.payload === "created" ){
+                apiDb = filtro.filter((e) => (e.createInDb === true))
+                return {
+                    ...state,
+                    dogs: apiDb
+                }
+            }
+            
+            if(action.payload === 'Api' ){
+                apiDb = filtro.filter((e) => !e.createInDb)
+                return {
+                    ...state,
+                    dogs: apiDb
+                }
+            }else{
+                apiDb = filtro
+                return {
+                    ...state,
+                    dogs: apiDb
+                }
             }
 
-            case 'ORDER_BY_NAME':
+
+            case ORDER_BY_NAME:
             const sortArr = action.payload === 'asc' ?
-                [...state.filtro1].sort(function (a, b) {
+                [...state.dogs].sort(function (a, b) {
                     if (a.name > b.name) { return 1 }
                     if (b.name > a.name) { return -1}
                     return 0;
                 }) :
-                [...state.filtro1].sort(function (a, b) {
+                [...state.dogs].sort(function (a, b) {
                     if (a.name > b.name) { return -1; }
                     if (b.name > a.name) { return 1; }
                     return 0;
                 })
+                
             return {
                 ...state,
-                filtro1: sortArr,
-                filtro2: sortArr
+                dogs: sortArr, 
             }
-        case 'ORDER_BY_WEIGHT':
+        case ORDER_BY_WEIGHT:
             const sortedWeight = action.payload === 'asc' ?
-                [...state.filtro1].sort(function (a, b) {
+                [...state.dogs].sort(function (a, b) {
                     if (a.weightMin === null) { return 0 }
                     if (a.weightMin < b.weightMin) { return 1 }
                     if (b.weightMin < a.weightMin) { return -1 }
                     return 0;
                 }) :
-                [...state.filtro1].sort(function (a, b) {
+                [...state.dogs].sort(function (a, b) {
                     if (a.weightMin === null) { return 0 }
                     if (a.weightMin < b.weightMin) { return -1; }
                     if (b.weightMin < a.weightMin) { return 1; }
@@ -102,11 +110,10 @@ const rootReducer = (state = initialState, action) => {
                 })
             return {
                 ...state,
-                filtro1: sortedWeight,
-                filtro2: sortedWeight
+                dogs: sortedWeight,
             }
 
-            case 'CLEAN' :
+            case CLEAN :
                 return({
                     ...state,
                     details: {}

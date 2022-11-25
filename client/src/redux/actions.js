@@ -81,9 +81,9 @@ export const filterById = (id) => async dispatch => {
 }
 
 
-export const filterCreated = (payload) => {
+export const filterCreated = (payload)  => async dispatch => {
     try {
-        return ({
+        return dispatch({
             type: FILTER_CREATED,
             payload
         })
@@ -93,9 +93,9 @@ export const filterCreated = (payload) => {
 }
 
 
-export const orderByName = (payload) => {
+export const orderByName = (payload) => async dispatch => {
     try {
-        return ({
+        return dispatch({
             type: ORDER_BY_NAME,
             payload
         })
@@ -105,9 +105,9 @@ export const orderByName = (payload) => {
     }
 }
 
-export const orderByWeight = (payload) => {
+export const orderByWeight = (payload) => async dispatch => {
     try {
-        return ({
+        return dispatch({
             type: ORDER_BY_WEIGHT,
             payload
         })
@@ -117,8 +117,8 @@ export const orderByWeight = (payload) => {
     }
 }
 
-export const clean = () => {
-    return ({
+export const clean = () => async dispatch => {
+    return dispatch({
         type: CLEAN
     })
 }

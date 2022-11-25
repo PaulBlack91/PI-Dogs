@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { allTemp } from "../../redux/actions";
-import NavBar from "../Navbar/Navbar";
+
 import s from "./Create.css";
 
 // estructura de componente, funcional dentro del el (htms) y dentro de (html {js})
@@ -87,7 +87,7 @@ const Create = () => {
           </Link>
         </div>
       </div>
-<h1>CREA TU PERRO</h1>
+      <h1>CREA TU PERRO</h1>
       <div className="create">
         <form className="content" onSubmit={handleSubmit}>
           <label>Name</label>
@@ -136,9 +136,8 @@ const Create = () => {
               <span key={i} value={e} className={s.span}>
                 {e}
                 <button onClick={handleDelete} value={e}>
-                  {" "}
-                  X{" "}
-                </button>{" "}
+                  X
+                </button>
               </span>
             ))}
           </div>

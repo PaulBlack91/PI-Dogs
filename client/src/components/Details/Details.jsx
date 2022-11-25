@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { filterById, clean } from "../../redux/actions";
-import NavBar from "../Navbar/Navbar";
+
 import './Details.css'
 
 const Details = (props) => {
@@ -18,8 +18,17 @@ const Details = (props) => {
   }, [dispatch, id]);
 
   return (
-    <div>
-      <NavBar/>
+    <div> 
+       <nav className="nav">
+      <div className="link">
+        <Link to="/create">
+          <button>Create</button>
+        </Link>
+        <Link to="/home">
+          <button>Home</button>
+        </Link>
+      </div>
+      </nav>
       <div className="details">
       <h3>Name: {dog.name}</h3>
       <h3>Temperament: {dog.temperament}</h3>

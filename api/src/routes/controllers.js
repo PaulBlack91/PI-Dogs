@@ -36,14 +36,14 @@ const ApiDb = async () => {
 }
 
 const getDogsDb = async () => {
-    // me traigo los daots de 'Dog' que estan en mi db y que me entcuentre todos y que lo incluyan en temperament 
+    // me traigo los daots de 'Dog' que estan en mi db y que me encuentre todos y que lo incluyan en temperament 
     try {
         const dogsDb = await Dog.findAll({
             include: [{
                 model: Temperament, //me trae el perro con el temperamento, y le pido el nombre del temperamento
                 attributes: ['name'], // del model temperamento saca el nombre 
                 through: {
-                    attributes: [] // supuestamente me los manda aca
+                    attributes: [] //  me los manda aca
                 }
             }]
         });
@@ -56,7 +56,7 @@ const getDogsDb = async () => {
                 image: e.image,
                 name: e.name,
                 heightMin: parseInt(e.heightMin),
-                heightMax: parseInt(e.heightMax),          // aca es donde yo puedo cambiarle en el front algun detalle determinado
+                heightMax: parseInt(e.heightMax),          
                 weightMin: parseInt(e.weightMin),
                 weightMax: parseInt(e.weightMax),
                 breeds: e.breeds,

@@ -28,8 +28,8 @@ const Card = ({
             <h3> Temperamentos: </h3>
             <p>{temperament}</p>
             <div className="texto">
-              <span> Peso:</span>
-              <p>{weightMin} - {weightMax} Kg.</p>              
+              <span> Peso: </span>
+              <p> {weightMin} - {weightMax} Kg.</p>              
               <span> Raza: </span> <p> {breeds}</p>
             </div>
           </div>
