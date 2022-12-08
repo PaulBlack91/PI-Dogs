@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Home.css";
 import Card from "../Card/Card.jsx";
-import logo from '../../dog.png'
+import logo from "../../dog.png";
 import SearchBar from "../SearchBar/SearchBar";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -12,10 +12,9 @@ import {
   filterByTemperament,
   filterCreated,
   orderByName,
-  orderByWeight
+  orderByWeight,
 } from "../../redux/actions.js";
 import Paginado from "../Paginado/Paginado.jsx";
-
 
 //ACA HACER EL FILTRADO
 // estructura de componente, funcional dentro del el (htms) y dentro de (html {js})
@@ -35,9 +34,6 @@ const Home = () => {
   const paginado = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
-
-
 
   function handleFilterTemp(e) {
     e.preventDefault();
@@ -68,84 +64,78 @@ const Home = () => {
 
   return (
     <div className="home1">
-     <nav className="nav">
-      <div className="logo">
-        <Link to="/home">
-          <img src={logo} alt="home" title="Home"/> 
-        </Link>
+      <nav className="nav">
+        <div className="logo">
+          <Link to="/home">
+            <img src={logo} alt="home" title="Home" />
+          </Link>
         </div>
-      <div className="link">
-        <Link to="/create">
-          <button>Create</button>
-        </Link>
-      </div>
+        <div className="link">
+          <Link to="/create">
+            <button>Create</button>
+          </Link>
+        </div>
 
-      <SearchBar paginado={paginado}/>
-
-      <div className="filtros">
-        <select
-          onChange={(e) => handleFilterCreate(e)}
-        >
-          <option defaultValue value="All">
-            Todos
-          </option>
-          <option value="created"> DB</option>
-          <option value="Api">API</option>
-        </select>
-        <select
-          defaultValue="default"
-          onChange={(e) => {
-            handleFilterTemp(e);
-          }}
-        >
-          <option value="default" disabled>
-            Temperament
-          </option>
-          <option key={0} value="All">
-            All
-          </option>
-          {temperament.map((e) => (
-            <option key={e.id} value={e.name}>
-              {e.name}
+        <SearchBar paginado={paginado} />
+        <h5 className="OrderAndFilter"> Filter by: </h5>
+        <div className="filtros">
+          <select onChange={(e) => handleFilterCreate(e)}>
+            <option defaultValue value="All">
+              Todos
             </option>
-          ))}
-        </select>
-      </div>
+            <option value="created"> DB</option>
+            <option value="Api">API</option>
+          </select>
+          <select
+            defaultValue="default"
+            onChange={(e) => {
+              handleFilterTemp(e);
+            }}
+          >
+            
+            <option value="default" disabled>
+              Temperament
+            </option>
+            <option key={0} value="All">
+              All
+            </option>
+            {temperament.map((e) => (
+              <option key={e.id} value={e.name}>
+                {e.name}
+              </option>
+            ))}
+          </select>
+        </div>
 
-      <div className="order">
-        <h5 className="OrderAndFilter"> Order by name: </h5>
-        <select
-          onChange={(e) => {
-            handleClickOrder(e);
-          }}
-        >
-          <option defaultValue value="all" hidden>
-             Order
-          </option>
-          <option value="asc">A - Z</option>
-          <option value="desc">Z - A</option>
-        </select>
+        <div className="order">
+          <h5 className="OrderAndFilter"> Order by name: </h5>
+          <select
+            onChange={(e) => {
+              handleClickOrder(e);
+            }}
+          >
+            <option defaultValue value="all" hidden>
+              Order
+            </option>
+            <option value="asc">A - Z</option>
+            <option value="desc">Z - A</option>
+          </select>
 
-        <h5 className="OrderAndFilter">Order by Weight:</h5>
-        <select
-          onChange={(e) => {
-            handleClickWOrder(e);
-          }}
-        >
-          <option defaultValue value="all" hidden>
-            Order
-          </option>
-          <option value="asc">Mayor a Menor</option>
-          <option value="desc">Menor a Mayor</option>
-        </select>
-        <hr />
-      </div>
-    </nav>
-
-
-
-
-
+          <h5 className="OrderAndFilter">Order by Weight:</h5>
+          <select
+            onChange={(e) => {
+              handleClickWOrder(e);
+            }}
+          >
+            <option defaultValue value="all" hidden>
+              Order
+            </option>
+            <option value="asc">Mayor a Menor</option>
+            <option value="desc">Menor a Mayor</option>
+          </select>
+          <hr />
+        </div>
+      </nav>
 
       <Paginado
         dogsPerPage={dogsPerPage}
@@ -164,7 +154,6 @@ const Home = () => {
               weightMax={e.weightMax}
               heightMin={e.heightMin}
               heightMax={e.heightMax}
-              breeds={e.breeds}
               temperament={e.temperament}
               life_span={e.life_span}
               key={e.id}

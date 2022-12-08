@@ -11,15 +11,18 @@ const SearchBar = ({paginado}) => {
 
     const handleSubmit = (e)=>{
         e.preventDefault()
-        paginado(1)
-
+        paginado(1)                 
         dispatch(
             getDogsName(input)
-        )
+            )
+            if(!input){
+              return alert('no')
+            }
+            console.log(input, 'algo')
         setImput('')
         }
 
-    const handleChange = (e)=>{
+    const handleChange = (e)=>{     
         setImput(e.target.value)
     }
 

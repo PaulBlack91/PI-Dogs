@@ -11,13 +11,12 @@ router.get("/", async (req, res) => {
     const { name } = req.query
 
     if (name) {
-      let dogName = await allDog.filter((e) => e.name.toLowerCase().includes(name.toLocaleLowerCase()))
+      let dogName = await allDog.filter((e) => e.name.toLowerCase().includes(name.toLowerCase()))
       dogName ? res.status(200).send(dogName) : res.status(400).send('Name not found')
     }
     else {
       res.status(200).send(allDog)
     }
-
 
   } catch (error) {
 
@@ -31,12 +30,15 @@ router.get('/:id', async (req, res) => {
   let allDogs = await getAll()
 
   try {
-    if (!id) return res.status(401).send('No se encontro el id')
+    // if (!id) return res.status(401).send('No se encontro el id')
 
     let dogsId = await allDogs.filter(e => e.id == id)
 
     if (dogsId.length) {
       res.status(200).send(dogsId[0])
+    }
+    else {
+      return res.status(401).send('No se encontro el id')
     }
 
   } catch (error) {
@@ -59,7 +61,7 @@ router.post("/", async (req, res) => {
   } = req.body;
   try {
 
-    if (name) {
+    if (name && heightMin && heightMax && weightMin && weightMax && temperament) {
       const newDog = await Dog.create({  // aca creo el perro con esto
         name,
         heightMin,
@@ -67,7 +69,7 @@ router.post("/", async (req, res) => {
         weightMin,
         weightMax,
         life_span,
-        image,        
+        image,
       });
 
       let createdDb = await Temperament.findAll({
@@ -78,11 +80,10 @@ router.post("/", async (req, res) => {
 
       await newDog.addTemperament(createdDb);
 
-
-
       return res.status(200).send("Dog Created");
     } else {
       return res.status(404).send("Dog Not Created");
+
     }
   } catch (error) {
     console.log(error);

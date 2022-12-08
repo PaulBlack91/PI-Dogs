@@ -6,6 +6,8 @@
   justify-content: center;
   position: absolute;
   flex-direction: column;
+  background-image: linear-gradient(to left top, #ffe4c4, #f4dfbd, #e9dab6, #ded4b0, #d3cfab, #c1b999, #afa388, #9c8e78, #78675b, #51433f, #2b2424, #000000);
+  
 }
 
 .landing img{    

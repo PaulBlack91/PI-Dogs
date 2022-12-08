@@ -9,7 +9,10 @@ const Card = ({
   image,
   weightMin,
   weightMax,
-  breeds,
+  heightMin,
+  heightMax
+
+  
 }) => {
   return (
     <div className="card">
@@ -28,9 +31,15 @@ const Card = ({
             <h3> Temperamentos: </h3>
             <p>{temperament}</p>
             <div className="texto">
+              <div>
               <span> Peso: </span>
-              <p> {weightMin} - {weightMax} Kg.</p>              
-              <span> Raza: </span> <p> {breeds}</p>
+              <p> {weightMin} - {weightMax} Kg.</p>                 
+              </div>
+              <div>
+              <span> Altura: </span>
+              <p> {heightMin} - {heightMax} cm.</p>
+              </div>
+              
             </div>
           </div>
         </div>

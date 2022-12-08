@@ -10,6 +10,8 @@ export const FILTER_CREATED = 'FILTER_CREATED'
 export const ORDER_BY_NAME = 'ORDER_BY_NAME'
 export const ORDER_BY_WEIGHT = 'ORDER_BY_WEIGHT'
 export const CLEAN = 'CLEAN'
+export const DELETE_DOG =  'DELETE_DOG'
+
 
 export const allDogs = () => async dispatch => {
     try {
@@ -121,3 +123,4 @@ export const clean = () => async dispatch => {
         type: CLEAN
     })
 }
+

@@ -18,7 +18,6 @@ const ApiDb = async () => {
                 heightMax: parseInt(height[1]),
                 weightMin: parseInt(weight[0]),
                 weightMax: parseInt(weight[1]),
-                breeds: e.breed_group,
                 life_span: e.life_span,
                 temperament: e.temperament,
                 image: e.image.url ? e.image.url : "not image Dog"                
@@ -59,7 +58,6 @@ const getDogsDb = async () => {
                 heightMax: parseInt(e.heightMax),          
                 weightMin: parseInt(e.weightMin),
                 weightMax: parseInt(e.weightMax),
-                breeds: e.breeds,
                 life_span: e.life_span + " years",
                 temperament: e.temperaments.map((e) => e.name), // este cuando haga el temperamen me va hacer falta  para   el get de temperamentos
                 createInDb: e.createInDb
@@ -98,7 +96,7 @@ const getApiTemperaments = async () => {
 
     temperament.forEach(async element => {
         if (element) {
-            Temperament.findOrCreate({
+           await Temperament.findOrCreate({
                 where: { name: element }
             });
         }
@@ -107,6 +105,7 @@ const getApiTemperaments = async () => {
     let allTemp = await Temperament.findAll()
     return allTemp
 }
+
 
 
 

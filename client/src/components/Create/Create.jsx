@@ -19,6 +19,7 @@ const Create = () => {
     weightMax: "",
     temperament: [],
     life_span: "",
+    breeds: "",
     image: "",
   });
 
@@ -29,13 +30,46 @@ const Create = () => {
       errors.name = "El nombre debe tener al menos 2 letras";
     }
     
+    if (isNaN(parseInt(input.heightMin))) {
+      errors.heightMin = "La altura mínima tiene que ser un número";
+    }
+    if (isNaN(parseInt(input.heightMax))) {
+      errors.heightMax = "La altura máxima tiene que ser un número";
+    }
 
-    if (input.heightMin > input.heightMax) {
-      errors.height = "La altura mínima no puede ser mayor que la máxima";
+    if (input.heightMin < 20) {
+      errors.heightMin = "No puede ser menor a 20 cm";
+    }
+
+    if (input.heightMax <= input.heightMin) {
+      errors.height =
+        "La altura máxima no puede ser menor o igual que la mínima";
+    }
+
+    if (input.heightMax > 100) {
+      errors.heightMax = "No puede ser mayor a 100 cm";
+    }
+
+    if (isNaN(parseInt(input.weightMin))) {
+      errors.weightMin = "El peso mínimo tiene que ser un número";
+    }
+
+    if (isNaN(parseInt(input.weightMax))) {
+      errors.weightMax = "El peso tiene que ser un número";
+    }
+
+    if (input.weightMin < 1) {
+      errors.weightMin = "No puede ser menor a 1 kilo";
+    }
+
+    if (input.weightMax <= input.weightMin) {
+      errors.weight = "El peso maximo no puede ser menor o igual que al mínimo";
     }
 
     return errors;
   };
+
+  const errorMsj = validate(input);
 
   function handleChange(e) {
     setInput({
@@ -73,6 +107,8 @@ const Create = () => {
     });
   }
 
+  
+
   useEffect(() => {
     dispatch(allTemp());
   }, [dispatch]);
@@ -88,9 +124,12 @@ const Create = () => {
       </div>
       <h1>CREA TU PERRO</h1>
       <div className="create">
+        
         <form className="content" onSubmit={handleSubmit}>
           <label>Name</label>
           <input type="text" onChange={handleChange} name="name" required />
+          <p className="formerror">{errorMsj.name}</p>
+
           <label>Height Min</label>
           <input
             type="text"
@@ -98,6 +137,8 @@ const Create = () => {
             name="heightMin"
             required
           />
+          <p className="formerror">{errorMsj.heightMin}</p>
+
           <label>Height Max</label>
           <input
             type="text"
@@ -105,6 +146,10 @@ const Create = () => {
             name="heightMax"
             required
           />
+          <p className="formerror">
+            {errorMsj.height}, {errorMsj.heightMax}
+          </p>
+
           <label>WeightMin</label>
           <input
             type="text"
@@ -112,6 +157,8 @@ const Create = () => {
             name="weightMin"
             required
           />
+          <p className="formerror"> {errorMsj.weightMin}</p>
+
           <label>WeightMax</label>
           <input
             type="text"
@@ -119,14 +166,16 @@ const Create = () => {
             name="weightMax"
             required
           />
+          <p className="formerror"> {errorMsj.weight}</p>
           <label>Life Span</label>
           <input type="text" onChange={handleChange} name="life_span" />
           <label>Imagen</label>
           <input type="text" onChange={handleChange} name="image" />
+
           <label>Temperament</label>
           <select name="temperament" onChange={handleSelect} required>
             {temperament?.map((e) => {
-              return <option key={e.id}>{e.name}</option>;
+              return <option key={e.id}> {e.name} </option>;
             })}
           </select>
           <div>
@@ -140,7 +189,9 @@ const Create = () => {
               </span>
             ))}
           </div>
-          <button type="submit">CREATE DOG</button>
+          
+          <button type="submit" disabled={!input.name || !input.heightMin || !input.heightMax || !input.weightMin || !input.weightMax }>CREATE DOG</button>
+
         </form>
       </div>
     </div>

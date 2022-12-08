@@ -9,7 +9,7 @@ const LandingPage = () => {
   return (
     <div className="landing">
       <Link to="/home">
-        <h1>API DOGS</h1>
+        <h1>CLICK ENTER API DOG</h1>
       </Link>
       <img src={perro} alt="" />
     </div>
