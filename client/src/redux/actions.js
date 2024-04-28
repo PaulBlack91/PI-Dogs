@@ -15,7 +15,7 @@ export const DELETE_DOG =  'DELETE_DOG'
 
 export const allDogs = () => async dispatch => {
     try {
-        const localhost = await axios.get('http://localhost:3001/dogs')
+        const localhost = await axios.get('/dogs')
         return dispatch({
             type: GET_DOGS,
             payload: localhost.data
@@ -28,7 +28,7 @@ export const allDogs = () => async dispatch => {
 
 export const allTemp = () => async dispatch => {
     try {
-        const localhost = await axios.get('http://localhost:3001/temperaments')
+        const localhost = await axios.get('/temperaments')
         //console.log(localhost.data)
         return dispatch({
             type: GET_TEMPERAMENTS,
@@ -43,7 +43,7 @@ export const allTemp = () => async dispatch => {
 
 export const getDogsName = (name) => async dispatch => {
     try {
-        const localhost = await axios.get(`http://localhost:3001/dogs?name=${name}`)
+        const localhost = await axios.get(`/dogs?name=${name}`)
         return dispatch({
             type: GET_DOGS_BY_NAME,
             payload: localhost.data
@@ -70,7 +70,7 @@ export const filterByTemperament = (payload) => async dispatch => {
 export const filterById = (id) => async dispatch => {
 
     try {
-        const localhost = await axios.get(`http://localhost:3001/dogs/${id}`)
+        const localhost = await axios.get(`/dogs/${id}`)
         return dispatch({
             type: GET_DOG_BY_ID,
             payload: localhost.data
