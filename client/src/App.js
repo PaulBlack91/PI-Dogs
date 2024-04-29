@@ -6,8 +6,8 @@ import Home from './components/Home/Home';
 import Details from './components/Details/Details';
 import Create from './components/Create/Create';
 import axios from 'axios';
-import {API} from process.env
-axios.defaults.baseURL = API;
+
+axios.defaults.baseURL = process.env.REACT_APP_API;
 
 function App() {
   return (
