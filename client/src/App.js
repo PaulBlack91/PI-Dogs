@@ -6,7 +6,8 @@ import Home from './components/Home/Home';
 import Details from './components/Details/Details';
 import Create from './components/Create/Create';
 import axios from 'axios';
-axios.defaults.baseURL = 'http://localhost:3001';
+import {API} from process.env
+axios.defaults.baseURL = API;
 
 function App() {
   return (
